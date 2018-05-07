@@ -1,5 +1,5 @@
 # document-management-app-demo
-user can upload only odf documents and display 
+user can upload only pdf documents and display 
 1) go to terminal and create virtual env
 ## virtualenv .env
 2) then active env.
