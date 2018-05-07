@@ -1,0 +1,158 @@
+{% extends 'base.html' %}
+{% block content %}
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <style>
+body {
+    font-family: "Lato", sans-serif;
+}
+
+.sidenav {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #111;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 60px;
+}
+
+.sidenav a {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #818181;
+    display: block;
+    transition: 0.3s;
+}
+
+.sidenav a:hover {
+    color: #f1f1f1;
+}
+
+.sidenav .closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+}
+
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 18px;}
+}
+</style>
+</head>
+<body>
+
+<div id="mySidenav" class="sidenav">
+  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+  <a href="{% url 'home' %}">Home</a>
+  <a href="{% url 'model_form_upload' %}">Upload Document</a>
+  <a href="{% url 'profile' %}">Create Profile</a>
+  <a href="{% url 'listProfile' %}">Profile View</a>
+  <a href="{% url 'listDocument' %}">Document Views</a>
+  <a href="{% url 'change_password' %}">Change Password</a>
+  <a href="{% url 'logout' %}">Logout</a>
+</div>
+
+
+<!-- <h2>Animated Sidenav Example</h2> -->
+<!-- <p>Click on the element below to open the side navigation menu.</p> -->
+<span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; open</span>
+
+<script>
+function openNav() {
+    document.getElementById("mySidenav").style.width = "250px";
+}
+
+function closeNav() {
+    document.getElementById("mySidenav").style.width = "0";
+}
+</script>
+     
+</body>
+</html> 
+<style>
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    height: 70%;
+    width: 100%;
+
+}
+
+.container {
+    border-radius: 5px;
+    background-color: #f2f2f2;
+    padding: 12px;
+    width: 1200px;
+}
+
+.color{
+    background-color: #657dbc;
+
+}
+td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 5px;
+}
+
+tr:nth-child(even) {
+    background-color: #dddddd;
+}
+</style>
+
+
+</head>
+<body>
+<hr>
+<div class="container">
+<h2>User Profile View</h2>
+<hr>
+
+<table>
+  
+  <tr class="color">
+    <th >ID</th>
+    <th>User</th>
+    <th>Name</th>
+    <th>Email</th>
+    <th>DOB</th>
+    <th>Update</th>
+  </tr>
+    
+  {% for profile in profile_qs %}
+  <tr> 
+    <td >{{ profile.id }}</td>
+    <td>{{ profile.user }}</td>
+    <td>{{ profile.name }}</td>
+    <td>{{ profile.email }}</td>
+    <td>{{ profile.dob }}</td>
+    <td><button type="button" class="btn btn-info"
+      onclick="window.location.href='/update/?pid={{profile.id }}'"
+      ">Update</button></td>
+
+  </tr>
+{% endfor %}
+</table>
+</header>
+  <hr>
+  
+  <p><a href="{% url 'home' %}">Return to home</a></p>
+  
+ </div>
+</body>
+</html>
+
+    {% endblock %}
+    
